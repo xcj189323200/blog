@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+.headband{
+   background: #fff !important;
+}
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #fff;    /*上边框颜色*/
+        border-left-color: #fff;    /*左边框颜色*/
+    }
+</style>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NODE,Express,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#express 简述 express 是什么Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。 express 中间件中间件（middleware）就是处理HTTP请求的函数。它最大的特点就是，一个中间件处理完，再传递给下一个中间件。App实例在运行过程中，会调用一系列的中间件。 每个中间件可以从App实例，接收三个参数，依次为request对象（">
+<meta name="keywords" content="NODE,Express">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Express">
+<meta property="og:url" content="http://yoursite.com/2018/01/13/EXPRESS/index.html">
+<meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="#express 简述 express 是什么Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。 express 中间件中间件（middleware）就是处理HTTP请求的函数。它最大的特点就是，一个中间件处理完，再传递给下一个中间件。App实例在运行过程中，会调用一系列的中间件。 每个中间件可以从App实例，接收三个参数，依次为request对象（">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-13T03:35:26.888Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Express">
+<meta name="twitter:description" content="#express 简述 express 是什么Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。 express 中间件中间件（middleware）就是处理HTTP请求的函数。它最大的特点就是，一个中间件处理完，再传递给下一个中间件。App实例在运行过程中，会调用一系列的中间件。 每个中间件可以从App实例，接收三个参数，依次为request对象（">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/13/EXPRESS/">
+
+
+
+
+
+  <title>Express | 一叶知秋</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c5742cf817a8b943f7be772bada1cab2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/xcj189323200"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一叶知秋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">世间安得双全法,不负如来不负卿</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            项目
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/13/EXPRESS/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="逍遥">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img.xcj521.cn/c4db5731aa2800c8d2988015858fe365-m.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一叶知秋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Express</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T11:35:26+08:00">
+                2018-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/NODE/" itemprop="url" rel="index">
+                    <span itemprop="name">NODE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端/NODE/Express/" itemprop="url" rel="index">
+                    <span itemprop="name">Express</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/01/13/EXPRESS/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/01/13/EXPRESS/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2018/01/13/EXPRESS/" class="leancloud_visitors" data-flag-title="Express">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#express 简述</p>
+<h2 id="express-是什么"><a href="#express-是什么" class="headerlink" title="express 是什么"></a>express 是什么</h2><p>Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。</p>
+<h2 id="express-中间件"><a href="#express-中间件" class="headerlink" title="express 中间件"></a>express 中间件</h2><p>中间件（middleware）就是处理HTTP请求的函数。它最大的特点就是，一个中间件处理完，再传递给下一个中间件。App实例在运行过程中，会调用一系列的中间件。</p>
+<p>每个中间件可以从App实例，接收三个参数，依次为request对象（代表HTTP请求）、response对象（代表HTTP回应），next回调函数（代表下一个中间件）。每个中间件都可以对HTTP请求（request对象）进行加工，并且决定是否调用next方法，将request对象再传给下一个中间件。</p>
+<p>一个不进行任何操作、只传递request对象的中间件，就是下面这样。</p>
+<pre><code>function uselessMiddleware(req, res, next) {
+      next();
+}
+</code></pre><p>上面代码的next就是下一个中间件。如果它带有参数，则代表抛出一个错误，参数为错误文本。</p>
+<pre><code>function uselessMiddleware(req, res, next) {
+  next(&apos;出错了！&apos;);
+}
+</code></pre><h2 id="express-运行原理"><a href="#express-运行原理" class="headerlink" title="express 运行原理"></a>express 运行原理</h2><p>Express框架建立在node.js内置的http模块上。http模块生成服务器的原始代码如下。</p>
+<pre><code>var http = require(&quot;http&quot;);
+
+var app = http.createServer(function(request, response) {
+  response.writeHead(200, {&quot;Content-Type&quot;: &quot;text/plain&quot;});
+  response.end(&quot;Hello world!&quot;);
+});
+
+app.listen(3000, &quot;localhost&quot;);
+</code></pre><p>上面代码的关键是http模块的createServer方法，表示生成一个HTTP服务器实例。该方法接受一个回调函数，该回调函数的参数，分别为代表HTTP请求和HTTP回应的request对象和response对象。</p>
+<p>Express框架的核心是对http模块的再包装。上面的代码用Express改写如下。</p>
+<pre><code>var express = require(&apos;express&apos;);
+var app = express();
+
+app.get(&apos;/&apos;, function (req, res) {
+  res.send(&apos;Hello world!&apos;);
+});
+
+app.listen(3000);
+</code></pre><p>比较两段代码，可以看到它们非常接近。原来是用http.createServer方法新建一个app实例，现在则是用Express的构造方法，生成一个Epress实例。两者的回调函数都是相同的。Express框架等于在http模块之上，加了一个中间层。</p>
+<hr>
+<h1 id="express-准备工作"><a href="#express-准备工作" class="headerlink" title="express 准备工作"></a>express 准备工作</h1><p>利用express 自带的生成器初始化项目<br>    npm install express-generator -g</p>
+<blockquote>
+<p>express-generator是Express4自带的命令行工具，用来初始化Express项目，所以只需要将其全局安装，而不需要将整个Express全局安装，这和Express3不同，在Express3中，命令行集成在整个Express项目中，所以必须将Express3全局安装。</p>
+</blockquote>
+<p>使用express命令初始化项目</p>
+<pre><code>express --git -f
+</code></pre><p>express命令有一些可选参数，具体可以参看官方文档。这里我们只用到了两个。</p>
+<blockquote>
+<p>–git ：告知express生成.gitignore文件，这个文件定义了git需要忽略控制的文件，通常node_mondules会被写到此文件里。</p>
+</blockquote>
+<blockquote>
+<p>-f ：当目标文件夹不为空时，仍然强制执行。这里加此选项的原因是因为我们clone下来的项目里原本含有LICENSE 和 README.md两个文件。</p>
+</blockquote>
+<p>然后 <code>npm install</code> 安装依赖即可</p>
+<p> 启动这个应用（MacOS 或 Linux 平台）：</p>
+<pre><code>DEBUG=myapp npm start
+</code></pre><p>Windows 平台使用如下命令：</p>
+<pre><code>set DEBUG=myapp &amp; npm start
+</code></pre><p>然后在浏览器中打开 <a href="http://localhost:3000/" target="_blank" rel="noopener">http://localhost:3000/</a> 网址就可以看到这个应用了。</p>
+<hr>
+<h1 id="Express-的方法"><a href="#Express-的方法" class="headerlink" title="Express 的方法"></a>Express 的方法</h1><h2 id="use-方法"><a href="#use-方法" class="headerlink" title="use() 方法"></a>use() 方法</h2><p>use是express注册中间件的方法，它返回一个函数。下面是一个连续调用两个中间件的例子。</p>
+<pre><code>var express = require(&quot;express&quot;);
+var http = require(&quot;http&quot;);
+
+var app = express();
+
+app.use(function(request, response, next) {
+  console.log(&quot;In comes a &quot; + request.method + &quot; to &quot; + request.url);
+  next();
+});
+
+app.use(function(request, response) {
+  response.writeHead(200, { &quot;Content-Type&quot;: &quot;text/plain&quot; });
+  response.end(&quot;Hello world!\n&quot;);
+});
+
+http.createServer(app).listen(1337);
+</code></pre><p>上面代码使用app.use方法，注册了两个中间件。收到HTTP请求后，先调用第一个中间件，在控制台输出一行信息，然后通过next方法，将执行权传给第二个中间件，输出HTTP回应。由于第二个中间件没有调用next方法，所以request对象就不再向后传递了。</p>
+<p>use方法内部可以对访问路径进行判断，据此就能实现简单的路由，根据不同的请求网址，返回不同的网页内容。</p>
+<pre><code>var express = require(&quot;express&quot;);
+var http = require(&quot;http&quot;);
+
+var app = express();
+
+app.use(function(request, response, next) {
+  if (request.url == &quot;/&quot;) {
+    response.writeHead(200, { &quot;Content-Type&quot;: &quot;text/plain&quot; });
+    response.end(&quot;Welcome to the homepage!\n&quot;);
+  } else {
+    next();
+  }
+});
+
+app.use(function(request, response, next) {
+  if (request.url == &quot;/about&quot;) {
+    response.writeHead(200, { &quot;Content-Type&quot;: &quot;text/plain&quot; });
+  } else {
+    next();
+  }
+});
+
+app.use(function(request, response) {
+  response.writeHead(404, { &quot;Content-Type&quot;: &quot;text/plain&quot; });
+  response.end(&quot;404 error!\n&quot;);
+});
+
+http.createServer(app).listen(1337);
+</code></pre><p>上面代码通过request.url属性，判断请求的网址，从而返回不同的内容。注意，app.use方法一共登记了三个中间件，只要请求路径匹配，就不会将执行权交给下一个中间件。因此，最后一个中间件会返回404错误，即前面的中间件都没匹配请求路径，找不到所要请求的资源。</p>
+<p>除了在回调函数内部判断请求的网址，use方法也允许将请求网址写在第一个参数。这代表，只有请求路径匹配这个参数，后面的中间件才会生效。无疑，这样写更加清晰和方便。</p>
+<pre><code>app.use(&apos;/path&apos;, someMiddleware);
+</code></pre><h2 id="all方法和HTTP动词方法"><a href="#all方法和HTTP动词方法" class="headerlink" title="all方法和HTTP动词方法"></a>all方法和HTTP动词方法</h2><p>针对不同的请求，Express提供了use方法的一些别名。比如，上面代码也可以用别名的形式来写。</p>
+<pre><code>var express = require(&quot;express&quot;);
+var http = require(&quot;http&quot;);
+var app = express();
+
+app.all(&quot;*&quot;, function(request, response, next) {
+  response.writeHead(200, { &quot;Content-Type&quot;: &quot;text/plain&quot; });
+  next();
+});
+
+app.get(&quot;/&quot;, function(request, response) {
+  response.end(&quot;Welcome to the homepage!&quot;);
+});
+
+app.get(&quot;/about&quot;, function(request, response) {
+  response.end(&quot;Welcome to the about page!&quot;);
+});
+
+app.get(&quot;*&quot;, function(request, response) {
+  response.end(&quot;404!&quot;);
+});
+
+http.createServer(app).listen(1337);
+</code></pre><p>上面代码的all方法表示，所有请求都必须通过该中间件，参数中的“*”表示对所有路径有效。get方法则是只有GET动词的HTTP请求通过该中间件，它的第一个参数是请求的路径。由于get方法的回调函数没有调用next方法，所以只要有一个中间件被调用了，后面的中间件就不会再被调用了。</p>
+<p>除了get方法以外，Express还提供post、put、delete方法，即HTTP动词都是Express的方法。</p>
+<p>这些方法的第一个参数，都是请求的路径。除了绝对匹配以外，Express允许模式匹配。</p>
+<blockquote>
+<p>注意：app.all() 是一个特殊的路由方法，没有任何 HTTP 方法与其对应，它的作用是对于一个路径上的所有请求加载中间件。</p>
+</blockquote>
+<pre><code> app.all(&apos;/secret&apos;, function (req, res, next) {
+  console.log(&apos;Accessing the secret section ...&apos;);
+  next(); // pass control to the next handler
+});
+</code></pre><h3 id="set方法"><a href="#set方法" class="headerlink" title="set方法"></a>set方法</h3><p>set方法用于指定变量的值。</p>
+<pre><code>app.set(&quot;views&quot;, __dirname + &quot;/views&quot;);
+
+app.set(&quot;view engine&quot;, &quot;jade&quot;);
+</code></pre><p>上面代码使用set方法，为系统变量“views”和“view engine”指定值。</p>
+<h3 id="response对象"><a href="#response对象" class="headerlink" title="response对象"></a>response对象</h3><h4 id="1-response-redirect方法"><a href="#1-response-redirect方法" class="headerlink" title="1.  response.redirect方法:"></a>1.  response.redirect方法:</h4><blockquote>
+<p>response.redirect方法允许网址的重定向。</p>
+</blockquote>
+<pre><code>response.redirect(&quot;/hello/anime&quot;);
+response.redirect(&quot;http://www.example.com&quot;);
+response.redirect(301, &quot;http://www.example.com&quot;);
+</code></pre><h4 id="2-response-sendFile方法"><a href="#2-response-sendFile方法" class="headerlink" title="2.  response.sendFile方法:"></a>2.  response.sendFile方法:</h4><blockquote>
+<p>response.sendFile方法用于发送文件。以八位字节流的形式发送文件。</p>
+</blockquote>
+<pre><code>response.sendFile(&quot;/path/to/anime.mp4&quot;);
+</code></pre><h4 id="3-response-render方法"><a href="#3-response-render方法" class="headerlink" title="3.  response.render方法:"></a>3.  response.render方法:</h4><blockquote>
+<p>response.render方法用于渲染网页模板。</p>
+</blockquote>
+<pre><code>app.get(&quot;/&quot;, function(request, response) {
+  response.render(&quot;index&quot;, { message: &quot;Hello World&quot; });
+});
+//上面代码使用render方法，将message变量传入index模板，渲染成HTML网页。
+</code></pre><h4 id="4-response-render方法"><a href="#4-response-render方法" class="headerlink" title="4.  response.render方法:"></a>4.  response.render方法:</h4><blockquote>
+<p>response.render方法用于渲染网页模板。下面代码使用render方法，将message变量传入index模板，渲染成HTML网页。</p>
+</blockquote>
+<pre><code>app.get(&quot;/&quot;, function(request, response) {
+  response.render(&quot;index&quot;, { message: &quot;Hello World&quot; });
+});
+</code></pre><h4 id="5-res-json方法"><a href="#5-res-json方法" class="headerlink" title="5. res.json方法:"></a>5. res.json方法:</h4><blockquote>
+<p>发送一个 JSON 格式的响应。</p>
+</blockquote>
+<h4 id="6-res-end方法"><a href="#6-res-end方法" class="headerlink" title="6.res.end方法:"></a>6.res.end方法:</h4><blockquote>
+<p>终结响应处理流程。</p>
+</blockquote>
+<h4 id="7-res-sendStatus方法"><a href="#7-res-sendStatus方法" class="headerlink" title="7.res.sendStatus方法:"></a>7.res.sendStatus方法:</h4><blockquote>
+<p>设置响应状态代码，并将其以字符串形式作为响应体的一部分发送。</p>
+</blockquote>
+<pre><code>res.sendStatus(200); // equivalent to res.status(200).send(&apos;OK&apos;)
+res.sendStatus(403); // equivalent to res.status(403).send(&apos;Forbidden&apos;)
+res.sendStatus(404); // equivalent to res.status(404).send(&apos;Not Found&apos;)
+res.sendStatus(500); // equivalent to res.status(500).send(&apos;Internal ServerError&apos;)
+</code></pre><h4 id="8-res-cookie-name-value-options-方法"><a href="#8-res-cookie-name-value-options-方法" class="headerlink" title="8.res.cookie(name, value [, options])方法:"></a>8.res.cookie(name, value [, options])方法:</h4><h5 id="cookie的创建"><a href="#cookie的创建" class="headerlink" title="cookie的创建:"></a>cookie的创建:</h5><p> express直接提供了api,只需要在需要使用的地方调用如下api即可</p>
+<pre><code>function(req, res, next){
+     ...
+     res.cookie(name, value [, options]);
+     ...
+ }
+</code></pre><p>express就会将其填入Response Header中的Set-Cookie，达到在浏览器中设置cookie的作用。</p>
+<ul>
+<li>name: 类型为String</li>
+<li>value: 类型为String和Object，如果是Object会自动调用JSON.stringify对其进行处理</li>
+<li><p>Option: 类型为对象，可使用的属性如下：</p>
+<blockquote>
+<p>   domain：cookie在什么域名下有效，类型为String,。默认为网站域名<br>expires: cookie过期时间，类型为Date。如果没有设置或者设置为0，那么该cookie只在这个这个session有效，即关闭浏览器后，这个cookie会被浏览器删除。<br>httpOnly: 只能被web server访问，类型Boolean。<br>maxAge: 实现expires的功能，设置cookie过期的时间，类型为String，指明从现在开始，多少毫秒以后，cookie到期。<br>path: cookie在什么路径下有效，默认为’/‘，类型为String<br>secure：只能被HTTPS使用，类型Boolean，默认为false<br>signed:使用签名，类型Boolean，默认为false。<code>express会使用req.secret来完成签名，需要cookie-parser配合使用</code></p>
+</blockquote>
+<p>res.cookie(‘name’, ‘koby’, { domain: ‘.example.com’, path: ‘/admin’, secure: true });<br>//cookie的有效期为900000ms<br>res.cookie(‘rememberme’, ‘1’, { expires: new Date(Date.now() + 900000), httpOnly: true });<br>//cookie的有效期为900000ms<br>res.cookie(‘rememberme’, ‘1’, { maxAge: 900000, httpOnly: true });</p>
+<p>//cookie的value为对象<br>res.cookie(‘cart’, { items: [1,2,3] });<br>res.cookie(‘cart’, { items: [1,2,3] }, { maxAge: 900000 });</p>
+<p>res.cookie(‘name’, ‘tobi’, { signed: true });</p>
+</li>
+</ul>
+<h5 id="cookie的删除"><a href="#cookie的删除" class="headerlink" title="cookie的删除"></a>cookie的删除</h5><p>express直接提供了api删除浏览器中的cookie,只需要在需要使用的地方调用如下api即可</p>
+<pre><code>function(req, res, next){
+    ...
+    res.clearCookie(name [, options]);
+    ...
+}
+</code></pre><p>利用cookie-parser读取cookie</p>
+<pre><code>npm install cookie-parser --save
+</code></pre><blockquote>
+<p>cookie-parser是一个非常好用方便的插件，可以直接用在express和connect中，官文地址为<a href="https://www.npmjs.com/package/cookie-parser。npm安装命令" target="_blank" rel="noopener">https://www.npmjs.com/package/cookie-parser。npm安装命令</a></p>
+</blockquote>
+<pre><code>var express = require(&apos;express&apos;);
+var cookieParser = require(&apos;cookie-parser&apos;);
+
+var app = express();
+//不使用签名
+app.use(cookieParser());  //挂载中间件，可以理解为实例化
+
+//若需要使用签名，需要指定一个secret,字符串,否者会报错
+app.use(cookieParser(&apos;Simon&apos;));
+</code></pre><p> 获取cookie(无签名)</p>
+<blockquote>
+<p>var cookies = req.cookies      # 获取cookie集合<br>  var value = req.cookies.key    # 获取名称为key的cookie的值</p>
+</blockquote>
+<p> 获取cookie(有签名)</p>
+<blockquote>
+<p>var cookies = req.signedCookies      # 获取cookie集合<br>var value = req.signedCookies.key    # 获取名称为key的cookie的值</p>
+</blockquote>
+<p>exmple:</p>
+<pre><code>var express = require(&apos;express&apos;);
+var app = express();
+var cookieParser = require(&apos;cookie-parser&apos;);
+
+//不使用签名
+// app.use(cookieParser());  //挂载中间件，可以理解为实例化
+
+//若需要使用签名，需要指定一个secret,字符串,否者会报错
+app.use(cookieParser(&apos;simon&apos;));
+
+// 设置cookie
+app.get(&apos;/setCookie&apos;, function (req, res, next) {
+    req.secret = &apos;simon&apos;; //签名不能做到加密 只能做到防止篡改
+    res.cookie(&apos;name&apos;, &apos;iwen&apos;);
+    res.cookie(&apos;signed1&apos;, &apos;signed2&apos;, {signed: true});
+    res.cookie(&apos;rememberme&apos;, &apos;1&apos;, {expires: new Date(Date.now() + 900000), httpOnly: true});
+    res.cookie(&apos;cart&apos;, {items: [1, 2, 3]}, {maxAge: 900000});
+
+    console.log(&quot;无签名的&quot;,req.cookies);
+    console.log(&quot;有签名的&quot;,req.signedCookies);
+    res.send(&apos;设置成功&apos;)
+});
+
+
+app.listen(3333, function () {
+    console.log(&apos;执行了&apos;)
+});
+</code></pre><h4 id="9-res-session方法"><a href="#9-res-session方法" class="headerlink" title="9.res.session方法:"></a>9.res.session方法:</h4><pre><code>npm install cookie-session
+</code></pre><p>cookieSession之前需要使用cookieParser中间件</p>
+<pre><code>var express =require(&apos;express&apos;);
+var app = express();
+app.use(express.cookieParser(&apos;S3CRE7&apos;));
+app.use(express.cookieSession(opt));
+</code></pre><p>中间件传递参数如下：</p>
+<blockquote>
+<p>key : cookie键，session_id；<br>secret : 加密cookie值的字符串，与cookieParser中的secret功能完全相同，如果cookieParser没有传入secret参数，此处必须传入。个人角度为了主观上的感觉，采用了两个不同的值。<br>cookie ： 设置cookie的相关参数，即除KV对之外的expire/maxAge,httpOnly,path值<br>proxy ： 是否信任反向代理，默认false</p>
+</blockquote>
+<p>example:</p>
+<pre><code>var express = require(&apos;express&apos;);
+var app = express();
+var cookieParser = require(&apos;cookie-parser&apos;);
+const cookieSession = require(&apos;cookie-session&apos;);
+
+/* 使用session */
+var session_arr = [];
+for (var i = 0; i &lt; 100000; i++) {
+    session_arr.push(&apos;keys_&apos; + Math.random());
+}
+app.use(cookieParser());
+app.use(cookieSession({name: &apos;api_session_id&apos;, keys: session_arr}));
+
+// 设置cookie
+app.get(&apos;/setSession&apos;, function (req, res, next) {
+    if (!req.session[&apos;count&apos;]) {
+        req.session[&apos;count&apos;] = 1;
+    } else {
+        req.session[&apos;count&apos;]++;
+    }
+
+    console.log(&quot;访问次数&quot;, req.session[&apos;count&apos;]);
+    res.send(&apos;设置成功&apos;)
+});
+
+
+app.listen(3333, function () {
+    console.log(&apos;执行了&apos;)
+});
+</code></pre><h3 id="requst对象"><a href="#requst对象" class="headerlink" title="requst对象"></a>requst对象</h3><h4 id="request-ip"><a href="#request-ip" class="headerlink" title="request.ip"></a>request.ip</h4><blockquote>
+<p>request.ip属性用于获得HTTP请求的IP地址。</p>
+</blockquote>
+<h4 id="request-files"><a href="#request-files" class="headerlink" title="request.files"></a>request.files</h4><blockquote>
+<p>request.files用于获取上传的文件。</p>
+</blockquote>
+<h4 id="req-body"><a href="#req-body" class="headerlink" title="req.body"></a>req.body</h4><pre><code>npm install body-parse --save
+</code></pre><blockquote>
+<ol>
+<li>bodyParser.json(options): 解析json数据</li>
+<li>bodyParser.raw(options): 解析二进制格式(Buffer流数据)</li>
+<li>bodyParser.text(options): 解析文本数据</li>
+<li>bodyParser.urlencoded(options): 解析UTF-8的编码的数据。</li>
+</ol>
+</blockquote>
+<pre><code>var bodyParser = require(&apos;body-parser&apos;);
+//创建 application/json 解析
+app.use(bodyParser.json())
+// 创建 application/x-www-form-urlencoded 解析
+app.use(bodyParser.urlencoded({extended: false}))
+
+app.post(&apos;/post&apos;, function (req, res) {
+ var params = req.body
+  console.log(params)
+  //{ params1: &apos;post_p1&apos;, params2: &apos;post_p2&apos; }
+})
+</code></pre><h5 id="bodyParser-json-options-返回一个仅解析json格式数据的中间件。"><a href="#bodyParser-json-options-返回一个仅解析json格式数据的中间件。" class="headerlink" title="bodyParser.json(options) :返回一个仅解析json格式数据的中间件。"></a>bodyParser.json(options) :返回一个仅解析json格式数据的中间件。</h5><p>option可选对象:</p>
+<blockquote>
+<ol>
+<li>inflate - 设置为true时，deflate压缩数据会被解压缩；设置为true时，deflate压缩数据会被拒绝。默认为true。</li>
+<li>limit - 设置请求的最大数据量。默认为’100kb’</li>
+<li>reviver - 传递给JSON.parse()方法的第二个参数，详见JSON.parse()</li>
+<li>strict - 设置为true时，仅会解析Array和Object两种格式；设置为false会解析所有JSON.parse支持的格式。默认为true</li>
+<li>type - 该选项用于设置为指定MIME类型的数据使用当前解析中间件。这个选项可以是一个函数或是字符串，当是字符串是会使用type-is来查找MIMI类型；当为函数是，中间件会通过fn(req)来获取实际值。默认为application/json。</li>
+<li>verify - 这个选项仅在verify(req, res, buf, encoding)时受支持</li>
+</ol>
+</blockquote>
+<h5 id="bodyParser-urlencoded-options-解析UTF-8的编码的数据。"><a href="#bodyParser-urlencoded-options-解析UTF-8的编码的数据。" class="headerlink" title="bodyParser.urlencoded(options) 解析UTF-8的编码的数据。"></a>bodyParser.urlencoded(options) 解析UTF-8的编码的数据。</h5><p>返回一个处理urlencoded数据的中间件。<br>option可选值：</p>
+<blockquote>
+<ol>
+<li>extended - 当设置为false时，会使用querystring库解析URL编码的数据；当设置为true时，会使用qs库解析URL编码的数据。后没有指定编码时，使用此编码。默认为true</li>
+<li>inflate - 设置为true时，deflate压缩数据会被解压缩；设置为true时，deflate压缩数据会被拒绝。默认为true。</li>
+<li>limit - 设置请求的最大数据量。默认为’100kb’</li>
+<li>parameterLimit - 用于设置URL编码值的最大数据。默认为1000</li>
+<li>type - 该选项用于设置为指定MIME类型的数据使用当前解析中间件。这个选项可以是一个函数或是字符串，当是字符串是会使用type-is来查找MIMI类型；当为函数是，中间件会通过fn(req)来获取实际值。默认为application/octet-stream。</li>
+<li>verify - 这个选项仅在verify(req, res, buf, encoding)时受支持</li>
+</ol>
+</blockquote>
+<h4 id="req-query"><a href="#req-query" class="headerlink" title="req.query"></a>req.query</h4><blockquote>
+<p>可以获得get请求参数</p>
+</blockquote>
+<hr>
+<h1 id="Express-Router用法"><a href="#Express-Router用法" class="headerlink" title="Express.Router用法"></a>Express.Router用法</h1><p>从Express 4.0开始，路由器功能成了一个单独的组件Express.Router。它好像小型的express应用程序一样，有自己的use、get、param和route方法。</p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p>首先，Express.Router是一个构造函数，调用后返回一个路由器实例。然后，使用该实例的HTTP动词方法，为不同的访问路径，指定回调函数；最后，挂载到某个路径。</p>
+<pre><code>var router = express.Router();
+
+router.get(&apos;/&apos;, function(req, res) {
+  res.send(&apos;首页&apos;);
+});
+
+router.get(&apos;/about&apos;, function(req, res) {
+  res.send(&apos;关于&apos;);
+});
+
+app.use(&apos;/&apos;, router);
+</code></pre><p>上面代码先定义了两个访问路径，然后将它们挂载到根目录。如果最后一行改为app.use(‘/app’, router)，则相当于为/app和/app/about这两个路径，指定了回调函数。</p>
+<p>这种路由器可以自由挂载的做法，为程序带来了更大的灵活性，既可以定义多个路由器实例，也可以为将同一个路由器实例挂载到多个路径。</p>
+<h2 id="router中间件"><a href="#router中间件" class="headerlink" title="router中间件"></a>router中间件</h2><p>use方法为router对象指定中间件，即在数据正式发给用户之前，对数据进行处理。下面就是一个中间件的例子。</p>
+<pre><code>router.use(function(req, res, next) {
+    console.log(req.method, req.url);
+    next();
+});
+</code></pre><p>上面代码中，回调函数的next参数，表示接受其他中间件的调用。函数体中的next()，表示将数据传递给下一个中间件。</p>
+<p>注意，中间件的放置顺序很重要，等同于执行顺序。而且，中间件必须放在HTTP动词方法之前，否则不会执行。</p>
+<h2 id="对路径参数的处理"><a href="#对路径参数的处理" class="headerlink" title="对路径参数的处理"></a>对路径参数的处理</h2><p>router对象的param方法用于路径参数的处理，可以</p>
+<pre><code>router.param(&apos;name&apos;, function(req, res, next, name) {
+    // 对name进行验证或其他处理……
+    console.log(name);
+    req.name = name;
+    next();
+});
+
+router.get(&apos;/hello/:name&apos;, function(req, res) {
+    res.send(&apos;hello &apos; + req.name + &apos;!&apos;);
+});
+</code></pre><p>上面代码中，get方法为访问路径指定了name参数，param方法则是对name参数进行处理。注意，param方法必须放在HTTP动词方法之前。</p>
+<p><code>`</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright" style="border:none !important">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p class="my_post_copyright_line"><i>
+  <p><span>本文标题:</span><a href="/2018/01/13/EXPRESS/">Express</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 逍遥 的个人博客">逍遥</a></p>
+  <p><span>发布时间:</span>2018年01月13日 - 11:01</p>
+  <p><span>最后更新:</span>2018年01月13日 - 11:01</p>
+  <p><span>原始链接:</span><a href="/2018/01/13/EXPRESS/" title="Express">http://yoursite.com/2018/01/13/EXPRESS/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/01/13/EXPRESS/" aria-label="复制成功！"></i></span>
+  </p>
+
+</i></p></div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          html: false,
+          timer: 500,
+          showConfirmButton: false
+        });
+      });
+    }));
+</script>
+
+
+      
+    </div>
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://img.xcj521.cn/17-11-16/95298897.jpg" alt="逍遥 wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NODE/" rel="tag"><i class="fa fa-tag"></i> NODE</a>
+          
+            <a href="/tags/Express/" rel="tag"><i class="fa fa-tag"></i> Express</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/16/VUEX/" rel="next" title="VUEX">
+                <i class="fa fa-chevron-left"></i> VUEX
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/16/MongoDB/" rel="prev" title="MongoDB">
+                MongoDB <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<!-- <a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a> -->
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://img.xcj521.cn/c4db5731aa2800c8d2988015858fe365-m.gif" alt="逍遥">
+            
+              <p class="site-author-name" itemprop="name">逍遥</p>
+              <p class="site-description motion-element" itemprop="description">人生若只如初见,何事秋风悲画扇</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xcj189323200" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:189323200@qq.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#express-是什么"><span class="nav-number">1.</span> <span class="nav-text">express 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express-中间件"><span class="nav-number">2.</span> <span class="nav-text">express 中间件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express-运行原理"><span class="nav-number">3.</span> <span class="nav-text">express 运行原理</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#express-准备工作"><span class="nav-number"></span> <span class="nav-text">express 准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Express-的方法"><span class="nav-number"></span> <span class="nav-text">Express 的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#use-方法"><span class="nav-number">1.</span> <span class="nav-text">use() 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#all方法和HTTP动词方法"><span class="nav-number">2.</span> <span class="nav-text">all方法和HTTP动词方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set方法"><span class="nav-number">2.1.</span> <span class="nav-text">set方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#response对象"><span class="nav-number">2.2.</span> <span class="nav-text">response对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-response-redirect方法"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.  response.redirect方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-response-sendFile方法"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.  response.sendFile方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-response-render方法"><span class="nav-number">2.2.3.</span> <span class="nav-text">3.  response.render方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-response-render方法"><span class="nav-number">2.2.4.</span> <span class="nav-text">4.  response.render方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-res-json方法"><span class="nav-number">2.2.5.</span> <span class="nav-text">5. res.json方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-res-end方法"><span class="nav-number">2.2.6.</span> <span class="nav-text">6.res.end方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-res-sendStatus方法"><span class="nav-number">2.2.7.</span> <span class="nav-text">7.res.sendStatus方法:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-res-cookie-name-value-options-方法"><span class="nav-number">2.2.8.</span> <span class="nav-text">8.res.cookie(name, value [, options])方法:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cookie的创建"><span class="nav-number">2.2.8.1.</span> <span class="nav-text">cookie的创建:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cookie的删除"><span class="nav-number">2.2.8.2.</span> <span class="nav-text">cookie的删除</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-res-session方法"><span class="nav-number">2.2.9.</span> <span class="nav-text">9.res.session方法:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#requst对象"><span class="nav-number">2.3.</span> <span class="nav-text">requst对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#request-ip"><span class="nav-number">2.3.1.</span> <span class="nav-text">request.ip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#request-files"><span class="nav-number">2.3.2.</span> <span class="nav-text">request.files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#req-body"><span class="nav-number">2.3.3.</span> <span class="nav-text">req.body</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#bodyParser-json-options-返回一个仅解析json格式数据的中间件。"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">bodyParser.json(options) :返回一个仅解析json格式数据的中间件。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#bodyParser-urlencoded-options-解析UTF-8的编码的数据。"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">bodyParser.urlencoded(options) 解析UTF-8的编码的数据。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#req-query"><span class="nav-number">2.3.4.</span> <span class="nav-text">req.query</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Express-Router用法"><span class="nav-number"></span> <span class="nav-text">Express.Router用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#router中间件"><span class="nav-number">2.</span> <span class="nav-text">router中间件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对路径参数的处理"><span class="nav-number">3.</span> <span class="nav-text">对路径参数的处理</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">逍遥</span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共10.0k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytjuAbYC';
+      var conf = '6eb2ac623249368c64b1985306683003';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("75bu3LP0xRuaYzgeWcxtOP2R-gzGzoHsz", "GIqwE6v6aNgVS8l4xaKgWgPd");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
