@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://yoursite.com/2018/01/18/VUEX%20-%20%E5%89%AF%E6%9C%AC/</loc>
+    <loc>http://blog.crofys.cn/2018/01/18/VUEX%20-%20%E5%89%AF%E6%9C%AC/</loc>
     <lastmod>2018-01-18T07:43:19.643Z</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/2018/01/16/MongoDB/</loc>
+    <loc>http://blog.crofys.cn/2018/01/16/MongoDB/</loc>
     <lastmod>2018-01-16T07:43:45.380Z</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/2018/01/13/EXPRESS/</loc>
+    <loc>http://blog.crofys.cn/2018/01/13/EXPRESS/</loc>
     <lastmod>2018-01-13T03:35:26.888Z</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/2017/11/16/VUEX/</loc>
+    <loc>http://blog.crofys.cn/2017/11/16/VUEX/</loc>
     <lastmod>2017-11-16T10:59:21.082Z</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/2017/11/15/gitHub_1/</loc>
+    <loc>http://blog.crofys.cn/2017/11/15/gitHub_1/</loc>
     <lastmod>2017-11-15T10:41:52.118Z</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/2017/11/15/hello-world/</loc>
+    <loc>http://blog.crofys.cn/2017/11/15/hello-world/</loc>
     <lastmod>2017-11-15T10:41:04.023Z</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/2017/11/15/node-fs/</loc>
+    <loc>http://blog.crofys.cn/2017/11/15/node-fs/</loc>
     <lastmod>2017-11-15T10:40:59.549Z</lastmod>
   </url>
 </urlset>
